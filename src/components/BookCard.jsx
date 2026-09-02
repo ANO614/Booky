@@ -1,3 +1,5 @@
+import styles from "../styles/BookCard.module.css";
+
 function BookCard({
     title,
     author,
@@ -7,30 +9,52 @@ function BookCard({
     featured
 }) {
 
-    return (
+const availabilityStyle = {
+    color: available ? "green" : "red",
+    fontWeight: "bold"
+};
 
-        <div className="book-card">
+return (
+    <div className={`card h-100 shadow-sm ${styles.bookCard}`}>
+
+        <div className="card-body text-center">
+
 
             {featured && (
-                <p className="featured">
-                    Featured Book
-                </p>
+                <span className="badge text-bg-warning mb-2">
+                    ⭐ Featured Book
+                </span>
             )}
 
-            <h2>{title}</h2>
-            <p> Author: {author} </p>
-            <p> Genre: {genre} </p>
-            <p> Rating: {rating} </p>
+            <h3 className="card-title">
+                {title}
+            </h3>
 
-            <p>
+            <p className="card-text">
+                <strong>Author:</strong> {author}
+            </p>
+
+            <p className="card-text">
+                <strong>Genre:</strong> {genre}
+            </p>
+
+            <p className="card-text">
+                ⭐ {rating}
+            </p>
+
+            <p style={availabilityStyle}>
+
                 {available
                     ? "🟢 Available"
-                    : "🔴 Currently Unavailable"}
+                    : "🔴 Currently Borrowed"}
+
             </p>
 
         </div>
 
-    );
+    </div>
+);
+
 }
 
 export default BookCard;

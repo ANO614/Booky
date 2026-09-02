@@ -3,8 +3,11 @@ import BookCard from "./BookCard";
 function BookList({ books }) {
 
     return (
-        <div className="book-list">
+        <div className="row">
             {books.map((book) => (
+                <div className="col-12 col-md-6 mb-4" 
+                key={book.id} >
+
                 <BookCard
                     key={book.id}
                     title={book.title}
@@ -14,6 +17,7 @@ function BookList({ books }) {
                     available={book.available}
                     featured={book.featured}
                 />
+                </div>
             ))}
         </div>
     );
