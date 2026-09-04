@@ -1,4 +1,4 @@
-.counter {
+/* .counter {
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -181,4 +181,50 @@
     right: 0;
     border-right-color: var(--border);
   }
+} */
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.light {
+    background-color: #f5f5f5;
+    color: #212529;
+}
+
+.dark {
+    background-color: #212529;
+    color: white;
+}
+
+.light-header {
+    background-color: #343a40;
+    color: white;
+}
+
+.dark-header {
+    background-color: #111;
+    color: white;
+}
+
+.dark .card {
+    background-color: #343a40;
+    color: white;
+}
+
+.dark .form-control {
+    background-color: #495057;
+    color: white;
+    border-color: #6c757d;
+}
+
+.dark .form-control::placeholder {
+    color: #cccccc;
 }

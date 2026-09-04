@@ -1,60 +1,79 @@
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/slices/cartSlice";
+
 import styles from "../styles/BookCard.module.css";
 
 function BookCard({
+    id,
     title,
     author,
     genre,
     rating,
     available,
-    featured
+    featured,
 }) {
+    const dispatch = useDispatch();
 
-const availabilityStyle = {
-    color: available ? "green" : "red",
-    fontWeight: "bold"
-};
+    const handleAddToCart = () => {
+        const book = {
+            id,
+            title,
+            author,
+            genre,
+            rating,
+        };
 
-return (
-    <div className={`card h-100 shadow-sm ${styles.bookCard}`}>
+        console.log("Adding book:", book);
 
-        <div className="card-body text-center">
+        dispatch(addToCart(book));
+    };
 
+    const availabilityStyle = {
+        color: available ? "green" : "red",
+        fontWeight: "bold",
+    };
 
-            {featured && (
-                <span className="badge text-bg-warning mb-2">
-                    ⭐ Featured Book
-                </span>
-            )}
+    return (
+        <div className={`card h-100 shadow-sm ${styles.bookCard}`}>
+            <div className="card-body text-center">
 
-            <h3 className="card-title">
-                {title}
-            </h3>
+                {featured && (
+                    <span className="badge text-bg-warning mb-2">
+                        ⭐ Featured Book
+                    </span>
+                )}
 
-            <p className="card-text">
-                <strong>Author:</strong> {author}
-            </p>
+                <h3 className="card-title">
+                    {title}
+                </h3>
 
-            <p className="card-text">
-                <strong>Genre:</strong> {genre}
-            </p>
+                <p>
+                    <strong>Author:</strong> {author}
+                </p>
 
-            <p className="card-text">
-                ⭐ {rating}
-            </p>
+                <p>
+                    <strong>Genre:</strong> {genre}
+                </p>
 
-            <p style={availabilityStyle}>
+                <p>
+                    ⭐ {rating}
+                </p>
 
-                {available
-                    ? "🟢 Available"
-                    : "🔴 Currently Borrowed"}
+                <p style={availabilityStyle}>
+                    {available
+                        ? "🟢 Available"
+                        : "🔴 Currently Borrowed"}
+                </p>
 
-            </p>
-
+                <button
+                    className="btn btn-dark w-100"
+                    onClick={handleAddToCart}
+                >
+                    🛒 Add to Cart
+                </button>
+            </div>
         </div>
-
-    </div>
-);
-
+    );
 }
 
 export default BookCard;

@@ -9,7 +9,7 @@ function BookList({ books }) {
                 key={book.id} >
 
                 <BookCard
-                    key={book.id}
+                    id={book.id}
                     title={book.title}
                     author={book.author}
                     genre={book.genre}
