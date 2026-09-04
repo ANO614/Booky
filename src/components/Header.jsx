@@ -6,11 +6,11 @@ const Title = styled.h1` margin-bottom: 10px;`;
 
 function Header() {
 
-    return (
-        <header>
-            <h1>Booky</h1>
+    return (  
+        <StyledHeader>
+            <Title>Booky</Title>
             <p> Discover your next favorite book ✨</p>
-        </header>
+        </StyledHeader>
     );
 }
 

@@ -1,113 +1,44 @@
-import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import BookList from "./components/BookList";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import useBookSearch from "./hooks/useBookSearch";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 import "./App.css";
 
 function App() {
-    const books = [
-    {
-        id: 1,
-        title: "The Hobbit",
-        author: "J.R.R. Tolkien",
-        genre: "Fantasy",
-        rating: 4.9,
-        available: true,
-        featured: true
-    },
-    {
-        id: 2,
-        title: "Atomic Habits",
-        author: "James Clear",
-        genre: "Self-help",
-        rating: 4.6,
-        available: false,
-        featured: false
-    },
-    {
-        id: 3,
-        title: "Harry Potter",
-        author: "J.K. Rowling",
-        genre: "Fantasy",
-        rating: 4.8,
-        available: true,
-        featured: true
-    },
-    {
-        id: 4,
-        title: "The Alchemist",
-        author: "Paulo Coelho",
-        genre: "Fiction",
-        rating: 4.5,
-        available: true,
-        featured: false
-    },
-    {
-        id: 5,
-        title: "1984",
-        author: "George Orwell",
-        genre: "Dystopian",
-        rating: 4.7,
-        available: false,
-        featured: true
-    },
-    {
-        id: 6,
-        title: "Pride and Prejudice",
-        author: "Jane Austen",
-        genre: "Romance",
-        rating: 4.6,
-        available: true,
-        featured: false
-    }
-    ];
+return ( <div className="app">
 
-    const {
-        searchTerm,
-        setSearchTerm,
-        filteredBooks
-    } = useBookSearch(books);
+        <Header/>
+        <Navbar/>
 
-    useEffect(() => {
-        document.title = `Book Explorer - ${filteredBooks.length} Books`;
-    }, [filteredBooks.length]);
+        <main className="main-content">
+            <Routes>
 
-    return (
-        <div className="app">
-
-            <Header />
-
-            <main className="container py-4">
-
-                <SearchBar
-                    searchTerm={searchTerm}
-                    setSearchTerm={setSearchTerm}
+                <Route
+                    path="/"
+                    element={<Home />}
                 />
+                <Route
+                    path="/about"
+                    element={<About />}
+                />
+                <Route
+                    path="/contact"
+                    element={<Contact />}
+                />
+                <Route
+                    path="*"
+                    element={<NotFound />}
+                />
+            </Routes>
+        </main>
 
-                <p
-                    className="text-center fw-bold"
-                    style={{
-                        color: filteredBooks.length > 0
-                            ? "green"
-                            : "red"
-                    }}
-                >
-                    {filteredBooks.length > 0
-                        ? `${filteredBooks.length} book(s) found`
-                        : "No books found"}
-                </p>
-
-                <BookList books={filteredBooks} />
-
-            </main>
-
-            <Footer />
-
-        </div>
-    );
-
+        <Footer/>
+    </div>
+);
 }
 
 export default App;
